@@ -33,10 +33,11 @@ namespace final_assignment.Controllers
             {
                 _context.Employees.Add(emp);
                 _context.SaveChanges();
-                TempData["Message"] = "employee id successfully added to list";
+                TempData["Message"] = "employee record added successfully to the list";
+                return RedirectToAction("Index");
 
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
                 ModelState.AddModelError("", "employee id already exist in the system");
             }
@@ -64,6 +65,7 @@ namespace final_assignment.Controllers
                 data.designation = emp.designation;
                 data.managerId= emp.managerId;
                 _context.SaveChanges();
+                TempData["Message"] = "employee recod updated successfully";
             }
             return RedirectToAction("Index");
         }
@@ -82,6 +84,7 @@ namespace final_assignment.Controllers
             var data = _context.Employees.Where(x => x.employeeId == emp.employeeId).FirstOrDefault();
             _context.Employees.Remove(data);
             _context.SaveChanges();
+            TempData["Message"] = "employee record deleted successfully";
             return RedirectToAction("Index");
         }
 
@@ -95,7 +98,7 @@ namespace final_assignment.Controllers
 
         public ActionResult Manager() 
         {
-            var managers = _context.Employees.Where(x => x.managerId == null).OrderBy(x => x.name).ToList(); 
+            var managers = _context.Employees.Where(x => x.designation == "manager").ToList(); 
             return View(managers); 
         }
 

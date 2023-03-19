@@ -11,14 +11,25 @@ namespace final_assignment
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
+        [Required]
         public int employeeId { get; set; }
+        [Required]
         public string name { get; set; }
+        [Required]
         public string department { get; set; }
+        [Required]
         public Nullable<int> salary { get; set; }
+        [Required]
         public string designation { get; set; }
+        [Required]
+        //[Compare("employeeId", ErrorMessage ="ManagerId and EmployeeId should not be same.")]
+
         public Nullable<int> managerId { get; set; }
+
+
     }
 }

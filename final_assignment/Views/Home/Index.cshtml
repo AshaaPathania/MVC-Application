@@ -5,16 +5,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<br />
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success !</strong> @TempData["Message"]
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+            @*<span>x<*@
+        </button>
+
+    </div>
+}
+
 
 <p>
-    @Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-primary"})
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 
 <p>
-    @Html.ActionLink("show managers", "manager",null, new { @class = "btn btn-warning" })
+    @Html.ActionLink("show managers", "manager", null, new { @class = "btn btn-warning" })
 </p>
-   
+
 <table class="table">
     <tr>
         <th>
@@ -38,32 +51,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.employeeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.department)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.designation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.managerId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.employeeId }, new { @class = "btn btn-warning" }) |
-            @Html.ActionLink("Details", "Details", new { id=item.employeeId }, new { @class = "btn btn-info" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.employeeId }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.employeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.managerId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.employeeId }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.employeeId }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.employeeId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>
